@@ -19,6 +19,7 @@ def continue_game():
             continue
 
         if choice == 1:
+            line_break()
             break
         elif choice == 2:
             sys.exit(0)
@@ -30,10 +31,7 @@ def user_guess(range, life):
     life = life
 
     while guess != random_number and life > 0:
-        if life > 1:
-            print("You have {} lifes left".format(life))
-        else:
-            print("You have {} life left".format(life))
+        print("Life left: " + str(life))
 
         try:
             guess = int(input("Guess a number between 1 and {}: ".format(range)))
@@ -64,33 +62,19 @@ def user_guess(range, life):
 
     continue_game()
 
-def select_life():
-    """Select life time"""
+def select(text):
+    """Select function for range and life"""
     while True:
-        print("Enter a number of life")
+        print("Enter a number of {}".format(text))
 
         try:
-            life = int(input("> "))
+            select = int(input("> "))
         except:
             print("Enter only a number!!!")
             line_break()
             continue
 
-        return life
-
-def select_range():
-    """Select number range"""
-    while True:
-        print("Enter number range to play")
-
-        try:
-            range = int(input("> "))
-        except:
-            print("Enter only a number!!!")
-            line_break()
-            continue
-
-        return range
+        return select
 
 def select_mode():
     """Select game mode."""
@@ -114,8 +98,8 @@ def select_mode():
         if mode == 2:
             sys.exit(0)
 
-        range = select_range()
-        life = select_life()
+        range = select("range")
+        life = select("life")
         if mode == 1:
             user_guess(range, life)
 

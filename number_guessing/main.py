@@ -6,7 +6,9 @@ def line_break():
 
 def continue_game():
     """Ask player that want to continue playing or not"""
-    while True:
+    choice = 0
+
+    while (choice < 1 or choice > 2):
         print("Continue or Not:")
         print("1. Continue")
         print("2. Quit")
@@ -78,7 +80,9 @@ def select(text):
 
 def select_mode():
     """Select game mode."""
-    while True:
+    mode = 0
+
+    while (mode < 1 or mode > 2):
         print("Game Mode:")
         print("1. Let's I guess AI random number")
         print("2. Quit")
@@ -90,23 +94,19 @@ def select_mode():
             line_break()
             continue
 
-        if mode not in [1, 2]:
-            print("Enter only 1 or 2!")
-            line_break()
-            continue
-
         if mode == 2:
             sys.exit(0)
 
-        range = select("range")
-        life = select("life")
         if mode == 1:
+            range = select("range")
+            life = select("life")
             user_guess(range, life)
 
 def main():
     """main function of the game."""
     print("Welcome to Number Guessing Game!!!")
-    select_mode()
+    while True:
+        select_mode()
 
 if __name__ == "__main__":
     main()
